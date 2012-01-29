@@ -1,6 +1,6 @@
 <?php
 /**
- * Create_Mptt_Sql
+ * Mptt
  *
  * @package
  * @version 0.1
@@ -8,7 +8,7 @@
  * @author Nobuhiko
  * @license
  */
-class Create_Mptt_Sql {
+class Mptt {
 
     public function __construct() {
 
@@ -23,7 +23,7 @@ class Create_Mptt_Sql {
     }
 
     /**
-     * ¥ë¡¼¥È¤Îid¤òÊÖ¤¹
+     * ï¿½ë¡¼ï¿½È¤ï¿½idï¿½ï¿½ï¿½Ö¤ï¿½
      *
      * @access public
      * @return void
@@ -41,7 +41,7 @@ class Create_Mptt_Sql {
     }
 
     /**
-     * Tree¹½Â¤¤òºîÀ®¤¹¤ë
+     * Treeï¿½ï¿½Â¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *
      * @param mixed $direct_children_only
      * @access public
@@ -61,7 +61,7 @@ class Create_Mptt_Sql {
                 AND Child." . $this->properties['right'] . " < Parent." . $this->properties['right'] . "
         ";
 
-        // »Ò¶¡¤Î¤ß¼èÆÀ¤·¤¿¤¤¾ì¹ç
+        // ï¿½Ò¶ï¿½ï¿½Î¤ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if ($direct_children_only === true) {
             $sql .= "
                 AND Child." . $this->properties['level'] . " = Parent." . $this->properties['level'] . " + 1
@@ -79,10 +79,10 @@ class Create_Mptt_Sql {
 
 
     /**
-     * ¥Ñ¥ó¥¯¥º¤ÎºîÀ®¡Ê²¼¤«¤é¾å¤ò¤¿¤É¤ë½èÍý¡Ë
+     * ï¿½Ñ¥ó¥¯¥ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½Ê²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò¤¿¤É¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *
-     * @param mixed $direct_parent_only Ä¾ÀÜ¤Î¿Æ¤Î¤ß¼èÆÀ¤¹¤ë¾ì¹ç true
-     * @param mixed $exclusion_id ½ü³°¤¹¤ëid
+     * @param mixed $direct_parent_only Ä¾ï¿½Ü¤Î¿Æ¤Î¤ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true
+     * @param mixed $exclusion_id ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
      * @access public
      * @return string
      */
@@ -100,7 +100,7 @@ class Create_Mptt_Sql {
                 AND Parent." . $this->properties['right'] . " > Child." . $this->properties['right'] . "
         ";
 
-        // ¼«Ê¬¤Î¿Æ¤ÏÉ¬¤º1³¬ÁØ¾å
+        // ï¿½ï¿½Ê¬ï¿½Î¿Æ¤ï¿½É¬ï¿½ï¿½1ï¿½ï¿½ï¿½Ø¾ï¿½
         if ($direct_parent_only === true) {
             $sql .= "
                 AND Parent." . $this->properties['level'] . " = Child." . $this->properties['level'] . " - 1
@@ -125,14 +125,14 @@ class Create_Mptt_Sql {
 
 
     /**
-     * selectboxÅù¤Ç»È¤¤¤ä¤¹¤¤¤è¤¦¤Ë id => name ¤Î¥ê¥¹¥È¤òºîÀ®¤¹¤ë
+     * selectboxï¿½ï¿½ï¿½Ç»È¤ï¿½ï¿½ä¤¹ï¿½ï¿½ï¿½è¤¦ï¿½ï¿½ id => name ï¿½Î¥ê¥¹ï¿½È¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *
-     * @param string $separator level¤Î²ó¿ô¥»¥Ñ¥ì¡¼¥¿¡¼¤òÁÞÆþ¤¹¤ë
-     * @param mixed $exclusion_id ½ü³°¤¹¤ëid
+     * @param string $separator levelï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¥ì¡¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * @param mixed $exclusion_id ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
      * @access public
      * @return string
      */
-    function getSelectedList($separator = ' ¡½ ', $exclusion_id = NULL) {
+    function getSelectedList($separator = ' ï¿½ï¿½ ', $exclusion_id = NULL) {
 
         $sql    = "
             SELECT
@@ -161,8 +161,8 @@ class Create_Mptt_Sql {
     }
 
     /**
-     * ÍÕ¤Î¥Ç¡¼¥¿¤ò¼èÆÀ¤¹¤ë
-     * (¿Æ¤Îid¤ò¾ï¤Ë¼è¤Ã¤¿¤Û¤¦¤¬¸úÎ¨¤¬ÎÉ¤¤)
+     * ï¿½Õ¤Î¥Ç¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * (ï¿½Æ¤ï¿½idï¿½ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ï¿½Ã¤ï¿½ï¿½Û¤ï¿½ï¿½ï¿½ï¿½ï¿½Î¨ï¿½ï¿½ï¿½É¤ï¿½)
      *
      * @access public
      * @return string
@@ -186,15 +186,15 @@ class Create_Mptt_Sql {
     }
 
     /**
-     * ¿Æ¤ÎËö¤Ë»Ò¤òÄÉ²Ã¤¹¤ë(°Ù¤Ë¾ì½ê¤ò¶õ¤±¤ë)
+     * ï¿½Æ¤ï¿½ï¿½ï¿½ï¿½Ë»Ò¤ï¿½ï¿½É²Ã¤ï¿½ï¿½ï¿½(ï¿½Ù¤Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
      *
-     * @param mixed $rgt ¿Æ¤Îright
+     * @param mixed $rgt ï¿½Æ¤ï¿½right
      * @access private
      * @return string
      */
     private function blankAsLastChildOf($rgt) {
 
-        // ¿Æ¤ÎËöÀÊ¤ò¶õ¤±¤ëSQL
+        // ï¿½Æ¤ï¿½ï¿½ï¿½ï¿½Ê¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SQL
         return "
             UPDATE " . $this->properties['table_name'] . "
                 SET  " . $this->properties['left'] . " = CASE WHEN " . $this->properties['left'] . " > $rgt
@@ -211,7 +211,7 @@ class Create_Mptt_Sql {
 
 
     /**
-     * »ØÄê¤·¤¿id¤ÎÁ°¤ËÁÞÆþ¤¹¤ë(°Ù¤Ë¾ì½ê¤ò¶õ¤±¤ë)
+     * ï¿½ï¿½ï¿½ê¤·ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù¤Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
      *
      * @param mixed $left
      * @param mixed $right
@@ -234,7 +234,7 @@ class Create_Mptt_Sql {
     }
 
     /**
-     * »ØÄê¤·¤¿¥°¥ë¡¼¥×¤òÆþ¤ìÂØ¤¨¤ë
+     * ï¿½ï¿½ï¿½ê¤·ï¿½ï¿½ï¿½ï¿½ï¿½ë¡¼ï¿½×¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¤ï¿½ï¿½ï¿½
      *
      * @param mixed $left_1
      * @param mixed $right_1
@@ -259,10 +259,10 @@ class Create_Mptt_Sql {
 
 
     /**
-     * ¿Æ¤ÎËö¤Ø°ÜÆ°¤¹¤ë
+     * ï¿½Æ¤ï¿½ï¿½ï¿½ï¿½Ø°ï¿½Æ°ï¿½ï¿½ï¿½ï¿½
      *
-     * @param mixed $group_id ¿Æ¤Îid
-     * @param mixed $level ¿Æ¤Îlevel
+     * @param mixed $group_id ï¿½Æ¤ï¿½id
+     * @param mixed $level ï¿½Æ¤ï¿½level
      * @access public
      * @return string
      */
@@ -287,10 +287,10 @@ class Create_Mptt_Sql {
 
 
     /**
-     * »ØÄê¤·¤¿·»Äï¤ÎÁ°¤Ë°ÜÆ°¤¹¤ë
+     * ï¿½ï¿½ï¿½ê¤·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½Æ°ï¿½ï¿½ï¿½ï¿½
      *
-     * @param mixed $group_id ·»Äï¤Îid
-     * @param mixed $level ·»Äï¤Îlevel
+     * @param mixed $group_id ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
+     * @param mixed $level ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½level
      * @access public
      * @return string
      */
@@ -316,10 +316,10 @@ class Create_Mptt_Sql {
 
 
     /**
-     * »Ò¶¡¤â´Þ¤á¤Æºï½ü¤¹¤ë
+     * ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½Æºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *
-     * @param mixed $left ºï½ü¤¹¤ëÂÐ¾Ý¤Îleft
-     * @param mixed $right ºï½ü¤¹¤ëÂÐ¾Ý¤Îright
+     * @param mixed $left ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¾Ý¤ï¿½left
+     * @param mixed $right ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¾Ý¤ï¿½right
      * @access public
      * @return array
      */
@@ -332,7 +332,7 @@ class Create_Mptt_Sql {
                 " . $this->properties['left'] . " >= " . $lft . " AND " . $this->properties['right'] . " <= " . $rgt
             ;
 
-        // ½çÈÖ¤ò¤º¤é¤¹¥¹¥¿¡¼¥È
+        // ï¿½ï¿½ï¿½Ö¤ò¤º¤é¤¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         $target_rl_difference = "$right  - $left + 1";
 
         $leftSql = "
